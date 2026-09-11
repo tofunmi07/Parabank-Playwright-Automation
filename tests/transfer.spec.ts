@@ -7,10 +7,10 @@ test("user can transfer funds with people", async ({ page }) => {
   const Transferfunds = new TransferFunds(page);
 
   await LoginPage.goto();
-  await LoginPage.Login("testuser1", "Password1!");
+  await LoginPage.Login("gunners1", "Password1!");
 
   await Transferfunds.goto();
-  await Transferfunds.Transfer("120", "13566", "13677");
+  await Transferfunds.Transfer("120", "15009", "20559");
 
   await expect(Transferfunds.confirmation).toHaveText("Transfer Complete!");
 });
@@ -20,10 +20,10 @@ test("transfer correctly reduces account balance", async ({ page }) => {
   const Transferfunds = new TransferFunds(page);
 
   await LoginPage.goto();
-  await LoginPage.Login("testuser1", "Password1!");
+  await LoginPage.Login("gunners1", "Password1!");
 
   //read the balance before transfer
-  await page.goto("http://localhost:9090/parabank/overview.htm");
+  await page.goto("https://parabank.parasoft.com/parabank/overview.htm");
   const balanceText = await page
     .locator("#accountTable tbody tr td:nth-child(2)")
     .first()
@@ -34,12 +34,12 @@ test("transfer correctly reduces account balance", async ({ page }) => {
 
   //do the transfer
   await Transferfunds.goto();
-  await Transferfunds.Transfer("120", "13566", "13677");
+  await Transferfunds.Transfer("120", "13344", "13455");
   await expect(Transferfunds.confirmation).toBeVisible();
   await page.screenshot({ path: "after-transfer.png" });
 
   //read the balance after
-  await page.goto("http://localhost:9090/parabank/overview.htm");
+  await page.goto("https://parabank.parasoft.com/parabank/overview.htm");
   const newbalanceText = await page
     .locator("#accountTable tbody tr td:nth-child(2)")
     .first()

@@ -22,7 +22,7 @@ export class NewAccount {
   }
 
   async goto() {
-    await this.page.goto("http://localhost:9090/parabank/overview.htm");
+    await this.page.goto("https://parabank.parasoft.com/parabank/index.htm");
   }
 
   async CreateNewAccount(type: string, outgoing: string) {

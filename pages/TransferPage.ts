@@ -11,7 +11,7 @@ export class TransferFunds {
 
   constructor(page: Page) {
     this.page = page;
-    this.amount = page.locator("#amount");
+    this.amount = page.locator("//input[@id='amount']");
     this.from = page.locator("#fromAccountId");
     this.to = page.locator("#toAccountId");
     this.transferButton = page.locator("//input[@value='Transfer']");
@@ -22,7 +22,7 @@ export class TransferFunds {
   }
 
   async goto() {
-    await this.page.goto("http://localhost:9090/parabank/transfer.htm");
+    await this.page.goto("https://parabank.parasoft.com/parabank/transfer.htm");
   }
 
   async Transfer(amount: string, from: string, to: string) {
