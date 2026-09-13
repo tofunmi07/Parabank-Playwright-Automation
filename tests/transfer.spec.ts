@@ -7,10 +7,10 @@ test("user can transfer funds with people", async ({ page }) => {
   const Transferfunds = new TransferFunds(page);
 
   await LoginPage.goto();
-  await LoginPage.Login("gunners1", "Password1!");
+  await LoginPage.Login("Getafe", "Password1!");
 
   await Transferfunds.goto();
-  await Transferfunds.Transfer("120", "15009", "20559");
+  await Transferfunds.Transfer("120", "20670", "21114");
 
   await expect(Transferfunds.confirmation).toHaveText("Transfer Complete!");
 });
@@ -20,7 +20,7 @@ test("transfer correctly reduces account balance", async ({ page }) => {
   const Transferfunds = new TransferFunds(page);
 
   await LoginPage.goto();
-  await LoginPage.Login("gunners1", "Password1!");
+  await LoginPage.Login("Getafe", "Password1!");
 
   //read the balance before transfer
   await page.goto("https://parabank.parasoft.com/parabank/overview.htm");
@@ -34,7 +34,7 @@ test("transfer correctly reduces account balance", async ({ page }) => {
 
   //do the transfer
   await Transferfunds.goto();
-  await Transferfunds.Transfer("120", "13344", "13455");
+  await Transferfunds.Transfer("120", "20670", "21114");
   await expect(Transferfunds.confirmation).toBeVisible();
   await page.screenshot({ path: "after-transfer.png" });
 
